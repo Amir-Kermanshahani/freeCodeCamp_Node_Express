@@ -51,11 +51,12 @@ app.route('/name')
         name: `${firstName} ${lastName}`
     })
 })
-.post(function(req, res, next) {
-    res.send("Post request recieved")
-    next()
-}, function(req, res) {
-
+.post(function(req, res) {
+    firstName = req.body.first
+    lastName = req.body.last
+    res.json({
+        name: `${firstName} ${lastName}`
+    })
 })
 
 
