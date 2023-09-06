@@ -40,6 +40,17 @@ app.get("/:word/echo", function(req, res) {
         echo: req.params.word
     })
 })
+app.route('/name')
+.get(function(req, res) {
+    firstName = req.query.first
+    lastName = req.query.last
+    res.json({
+        name: `${firstName} ${lastName}`
+    })
+})
+.post(function(req, res) {
+    res.send("Post request recieved")
+})
 
 
 
