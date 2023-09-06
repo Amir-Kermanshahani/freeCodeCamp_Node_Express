@@ -1,9 +1,11 @@
 let express = require('express');
 let app = express();
 
+let bodyParser = require('body-parser')
 require('dotenv').config()
 console.log("Hello World")
 absolutePath = __dirname + '/views/index.html'
+app.use(bodyParser.urlencoded({extended: false}))
 publicAbsolutePath = __dirname + "/public"
 app.get("/", function(req, res) {
     res.sendFile(absolutePath)
@@ -40,6 +42,7 @@ app.get("/:word/echo", function(req, res) {
         echo: req.params.word
     })
 })
+
 app.route('/name')
 .get(function(req, res) {
     firstName = req.query.first
@@ -48,8 +51,11 @@ app.route('/name')
         name: `${firstName} ${lastName}`
     })
 })
-.post(function(req, res) {
+.post(function(req, res, next) {
     res.send("Post request recieved")
+    next()
+}, function(req, res) {
+
 })
 
 
