@@ -8,7 +8,11 @@ app.get("/", function(req, res) {
     res.sendFile(absolutePath)
 })
 app.use("/public", express.static(publicAbsolutePath))
-
+app.get("/json", function(req, res) {
+    res.json({
+        "message": "Hello json"
+    })
+})
 
 
 
